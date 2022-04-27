@@ -17,15 +17,6 @@ lista1 = list(num_1)
 lista2 = list(num_2)
 lista_aux = []
 
-for i in lista1:
-    indice = lista1.index(i)
-    i = int(i)
-    lista1[indice] = format(i, "b")
-
-for i in lista2:
-    indice = lista2.index(i)
-    i = int(i)
-    lista2[indice] = format(i, "b")
 
 if len(lista1) < len(lista2):
     largo = len(lista2)

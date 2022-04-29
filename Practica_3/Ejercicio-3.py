@@ -11,11 +11,13 @@ cadena = input("Ingrese cadena: ")
 lista = list(cadena)
 lista_aux = ['a', 'e', 'i', 'o', 'u']
 
-for letra in lista:
+# Enumerate permite recorrer la lista con dos variables
+for indice, letra in enumerate(lista): #'indice' recorre las posiciones, y 'letra' recorre los valores de la lista
+    #si la letra de la cadena se encuentra en la lista de vocales, entonces reemplazo su valor por '.'
     if letra in lista_aux:
-        indice = lista.index(letra)
         lista[indice] = '.'
 
+# Repongo la cadena en un string
 cadena = ''.join(lista)
 
 print(cadena)

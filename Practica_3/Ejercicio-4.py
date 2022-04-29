@@ -7,16 +7,55 @@ Nota: El procedimiento de suma con acarreo que implementes deberá trabajar
 directamente con la representación binaria leída.
 '''
 
-num_1 = input("Ingrese el primer número binario: ")
-num_2 = input("Ingrese el segundo número binario: ")
+num1 = input("Ingrese el primer número binario: ")
+num2 = input("Ingrese el segundo número binario: ")
+
+acarreo = 0
+resultado_final = ''
 
 '''num1_bin = int(num_1)
-num2_bin = int(num_2)'''
+num2_bin = int(num_2)
 
 lista1 = list(num_1)
 lista2 = list(num_2)
-lista_aux = []
+'''
 
+# Agrego los '0' necesarios para igualar el largo de ambos números
+if len(num1) < len(num2):
+    num1 = num1.zfill(len(num2))
+elif len(num2) < len(num1):
+    num2 = num2.zfill(len(num1))
+
+# Recorro el número desde el último dígito hasta el primero.
+for i in range(len(num1)-1, -1, -1):
+    resultado = acarreo # 'resultado' almacena la suma de los bits de cada posición, incluyendo el acarreo.
+
+    # Sumo los bits de cada posición.
+    if num1[i] == '1':
+        resultado += 1
+    if num2[i] == '1':
+        resultado += 1
+    
+    # Si el resultado es impar se agrega un 1 al resultado final.
+    if resultado % 2 == 1:
+        resultado_final = '1' + resultado_final
+    else:
+        resultado_final = '0' + resultado_final
+    
+    # Verifico si hay que acarrear un '1'.
+    if resultado >= 2:
+        acarreo = 1
+    else: 
+        acarreo = 0
+
+if acarreo == 1:
+    resultado_final = '1' + resultado_final
+
+print(resultado_final)
+
+'''
+
+                  PRIMERA FORMA QUE USÉ
 
 if len(lista1) < len(lista2):
     largo = len(lista2)
@@ -84,4 +123,4 @@ if acarreo == 1:
 
         
 print(nueva_lista)
-
+'''

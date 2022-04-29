@@ -1,5 +1,3 @@
-lista= [1, 2, 3]
+num = '1685'
 
-valor = 5 < len(lista)
-
-print(valor)
+print(num[2])

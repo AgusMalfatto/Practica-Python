@@ -5,11 +5,12 @@ una palabra y nos diga si es alfabética o no.
 '''
 
 from ntpath import join
-
-
 palabra = input("Ingrese una palabra: ")
 
+# Creo una nueva palabra producto de ordenar alfabéticamente el string ingresado por el usuario
 nueva_palabra = ''.join(sorted(palabra)) # 'sorted' ordena el string y devuelve una lista -- ''.join convierte la lista en string
+
+# Comparo que ambas palabras sean iguales
 valor = palabra == nueva_palabra
 
 if valor:

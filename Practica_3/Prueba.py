@@ -1,36 +1,38 @@
-num1 = input('Ingrese un número binario: ')
-num2 = input('Ingrese otro número binario: ')
-acarreo = 0
-resultado = ''
+'''
+Los biólogos usan una secuencia de letras A, C, T, y G para modelar un genoma. Un gen es
+un subcadena de un genoma que comienza después de la tripleta ATG y termina con una
+tripleta TAG, TAA, ó TGA. La longiutd de una cadena de gen es un múltiplo de 3 y el gen
+no contiene a las tripletas ATG, TAG, TAA y TGA. Escribir un programa que permita
+ingresar un genoma y muestre todos los genes en el genoma. Si en la cadena no se
+encuentran genes, el programa mostrará un mensaje acorde. Ejemplo:
+si la cadena es TTATGTTTTAAGGATGGGGCGTTAGTT, el programa mostrará:
+TTT
+GGGCGT
+Si la cadena es TGTGTGTATAT entonces se deberá mostrar "no se encontraron genes".
+'''
 
-# Igualar el largo de los números binarios
-if len(num1) > len(num2):
-    num2 = num2.zfill(len(num1))
-elif len(num1) < len(num2):
-    num1 = num1.zfill(len(num2))
+cadena = input("Ingrese la cadena: ")
+lista_cadena = []
+lista_ADN = []
+adn = ""
+inicio = "ATG"
+final = ["TAG", "TAA", "TGA"]
 
-# Sumar los números
-for d in range(len(num1)-1,-1,-1):
-    # Sumamos el número acarreado
-    r = acarreo
-    # Sumamos si el dígito es 1
-    if num1[d] == '1':
-        r += 1
-    if num2[d] == '1':
-        r += 1
-    # Sumamos r al resultado
-    if r % 2 == 1:
-        resultado = '1' + resultado
-    else:
-        resultado = '0' + resultado
-    # Actualizamos el número acarreado 
-    if r == 2 or r == 3:
-        acarreo = 1
-    else:
-        acarreo = 0
+def Busca_ADN(lista, separador):
+    adn = lista.split(separador, 1) 
+    lista_ADN.append(adn[0]) 
 
-# Sumar lo que queda en el acarreo si es necesario
-if acarreo == 1:
-    resultado = '1' + resultado
+if "ATG" in cadena:
+    lista_cadena = cadena.split("ATG")
+    for i in lista_cadena:
+        for fin in final:
+            if fin in i:
+                Busca_ADN(i, fin)
 
-print(resultado)
+
+for adn in lista_ADN:
+    if (len(adn) % 3) != 0:
+        indice = lista_ADN.index(adn)
+        lista_ADN.pop(indice)
+
+print(lista_ADN)

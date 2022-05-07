@@ -27,15 +27,15 @@ def Busca_ADN(lista, separador):
 if "ATG" in cadena:
     #Separo el genoma usando la tripleta 'ATG' como separador
     lista_cadena = cadena.split("ATG")
+    # Recorro la lista generada antes
+    for i in lista_cadena:
+        # Recorro la lista con las tripletas que marcan el final de un gen
+        for fin in final:
+            # Compruebo qué tripleta me marca el fin del gen
+            if fin in i:
+                # Envío la porción del genoma junto con la tripleta final
+                Busca_ADN(i, fin)
 
-# Recorro la lista generada antes
-for i in lista_cadena:
-    # Recorro la lista con las tripletas que marcan el final de un gen
-    for fin in final:
-        # Compruebo qué tripleta me marca el fin del gen
-        if fin in i:
-            # Envío la porción del genoma junto con la tripleta final
-            Busca_ADN(i, fin)
 
 # Recorro la lista de ADNs encontrados
 for adn in lista_ADN:

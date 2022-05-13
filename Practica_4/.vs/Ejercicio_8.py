@@ -27,24 +27,47 @@ contarTld(c) se obtiene: {'cz': 2, 'de': 3, 'cn': 2, 'cl': 8}
 def Obtener_Dominios(correos):
     lista_dominios = []
     lista_correos = []
+    # Recorro los correos
     for correo in correos:
+        # Separo por el arroba
         correo_dominio = correo.split("@")
         lista_correos.append(correo_dominio)
     for dominios in lista_correos:
+        # Verifico si es dominio no está repetido
         if not(dominios[1] in lista_dominios):
             lista_dominios.append(dominios[1])
     lista_dominios = sorted(lista_dominios)
     return lista_dominios
 
 def Contar_Id(correos):
+    dic_tld = {}
+    for correo in correos:
+        # Extrigo la última porción desde el último punto
+        tld = correo.split('.')[-1]
+        if not(tld in dic_tld):
+            if not(tld in genericos):
+                dic_tld[tld] = 1
+        else: 
+            dic_tld[tld] += 1
+    return dic_tld
+'''
+def Contar_Id(correos):
     lista_tld = []
+    dic = {}
     for correo in correos:
         for i in range(len(correo) - 1, -1, -1):
             if correo[i] == '.' and not(correo[i+1: len(correo)] in genericos):
                 lista_tld.append(correo[i+1: len(correo)])
                 break
+    
+    for i in lista_tld:
+        if not(i in dic):
+            dic[i] = 1
+        else:
+            dic[i] += 1
     print(lista_tld)
-
+    print(dic)
+'''
             
 
 correos = ['fulano@usm.cl', 'erika@lala.de', 'li@zi.cn', 'a@a.net', 'gudrun@lala.de',
@@ -55,4 +78,8 @@ correos = ['fulano@usm.cl', 'erika@lala.de', 'li@zi.cn', 'a@a.net', 'gudrun@lala
 genericos = {'com', 'gov', 'edu', 'org', 'net', 'mil'}
 
 lista_dominios = Obtener_Dominios(correos)
-Contar_Id(correos)
+ids = Contar_Id(correos)
+
+print(lista_dominios)
+for i in ids:
+    print(f"{i}: {ids[i]}")
